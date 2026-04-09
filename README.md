@@ -63,16 +63,15 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Instructions
 
 After cloning this in your Visual Studio Code from GitHub, command these in your terminal:
+1. composer update
+2. npm install preline
+3. npm install -D @tailwindcss/forms
+4. php artisan migrate
+5. npm run build
 
-composer update
-npm install preline
-npm install -D @tailwindcss/forms
-php artisan migrate
-npm run build
 Before you proceed to login, make sure you command these in your terminal:
-
-php artisan db:seed --class=PermissionSeeder
-php artisan db:seed --class=DatabaseSeeder
+1. php artisan db:seed --class=PermissionSeeder
+2. php artisan db:seed --class=DatabaseSeeder
 
 ## Test Account
 
