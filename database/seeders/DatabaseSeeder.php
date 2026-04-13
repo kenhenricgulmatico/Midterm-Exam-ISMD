@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,25 @@ class DatabaseSeeder extends Seeder
        $adminRole = Role::firstOrCreate(['name' => 'admin']);
        $ownerRole = Role::firstOrCreate(['name' => 'owner']);
        $employeeRole = Role::firstOrCreate(['name' => 'employee']);
+       $customerRole = Role::firstOrCreate(['name' => 'customer']);
 
+       $permissions = [
+        'can_view_any',
+        'can_view',
+        'can_create',
+        'can_update',
+        'can_delete'
+       ];
+
+       foreach ($permissions as $permission) {
+        Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+       }
+
+
+       $adminRole->syncPermissions($permissions);
+       $ownerRole->syncPermissions(['can_view', 'can_create', 'can_update']);
+       $employeeRole->syncPermissions(['can_view_any', 'can_view']);
+       $customerRole->syncPermissions(['can_view']);
 
        $admin = User::firstOrCreate(['email' => 'admin@example.com'], ['name' => 'Admin User', 'password' => bcrypt('123123')]);
        $admin->assignRole($adminRole);

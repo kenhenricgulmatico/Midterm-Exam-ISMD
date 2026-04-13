@@ -7,7 +7,7 @@
       <h2 class="text-2xl font-bold text-gray-800 dark:text-neutral-200">Sign in</h2>
       <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
         Don't have an account?
-        <a class="text-blue-600 hover:underline font-medium" href="#">Sign up here</a>
+        <a class="text-blue-600 hover:underline font-medium" href="/register">Sign up here</a>
       </p>
     </div>
 
