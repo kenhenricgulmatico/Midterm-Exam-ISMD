@@ -6,6 +6,7 @@ Route::livewire('/', 'pages::public.home-page')->name('home');
 
 Route::livewire('/login', 'auth::login')->name('login');
 Route::livewire('/logout', 'auth::logout')->name('logout');
+Route::livewire('/register', 'auth::register')->name('register');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::livewire('/dashboard', 'pages::admin.dashboard')->name('admin.dashboard');
