@@ -102,13 +102,30 @@ new class extends Component
           <!-- End Dropdown -->
 
           <!-- Button Group -->
-          <div class="relative flex flex-wrap items-center gap-x-1.5 md:ps-2.5 mt-1 md:mt-0 md:ms-1.5 before:block before:absolute before:top-1/2 before:-start-px before:w-px before:h-4 before:bg-gray-200 dark:before:bg-neutral-700 before:-translate-y-1/2">
-            <a class="p-2 w-full flex items-center text-sm text-gray-800 dark:text-neutral-200 hover:text-gray-500 dark:hover:text-neutral-400 focus:outline-hidden focus:text-gray-500 dark:focus:text-neutral-400" href="/login">
-              <svg class="shrink-0 size-4 me-3 md:me-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              Log in
-            </a>
-          </div>
-          <!-- End Button Group -->
+<div class="relative flex flex-wrap items-center gap-x-1.5 md:ps-2.5 mt-1 md:mt-0 md:ms-1.5 before:block before:absolute before:top-1/2 before:-start-px before:w-px before:h-4 before:bg-gray-200 dark:before:bg-neutral-700 before:-translate-y-1/2">
+
+  @guest
+    <!-- Show Log in if not authenticated -->
+    <a class="p-2 w-full flex items-center text-sm text-gray-800 dark:text-neutral-200 hover:text-gray-500 dark:hover:text-neutral-400"
+       href="{{ route('login') }}">
+      <svg class="shrink-0 size-4 me-3 md:me-2" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      Log in
+    </a>
+  @endguest
+
+  @auth
+    <!-- Show user name and logout if authenticated -->
+    <span class="p-2 text-sm text-gray-800 dark:text-neutral-200">
+      {{ Auth::user()->name }}
+    </span>
+
+    <livewire:auth::logout />
+  @endauth
+</div>
+<!-- End Button Group -->
         </div>
       </div>
     </div>
