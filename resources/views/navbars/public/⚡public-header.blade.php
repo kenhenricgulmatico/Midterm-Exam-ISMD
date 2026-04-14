@@ -16,7 +16,7 @@ new class extends Component {
             <!-- Logo w/ Collapse Button -->
             <div class="flex items-center justify-between">
                 <a class="flex-none font-semibold text-xl text-gray-800 dark:text-neutral-200 focus:outline-hidden focus:opacity-80"
-                    href="#" aria-label="Brand">Brand</a>
+                    href="#" aria-label="Brand">Computer Shop</a>
 
                 <!-- Collapse Button -->
                 <div class="md:hidden">
