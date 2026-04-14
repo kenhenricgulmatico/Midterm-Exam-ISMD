@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->user() || ! $request->user()->hasRole('admin')) {
-            abort(403, 'Deny access if unauthorized');
+            abort(403, 'Deny access if unauthorized you don\'t have admin role');
         }
         return $next($request);
     }
