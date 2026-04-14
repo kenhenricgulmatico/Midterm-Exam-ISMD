@@ -1,4 +1,3 @@
-
 <div>
      <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
         <div class="mt-12 max-w-full mx-auto">
@@ -48,19 +47,19 @@
                             </div>
                         </div>
 
-                        <!-- Roles -->
+                        <!-- Roles (Single Selection) -->
                         <div class="mt-5">
-                            <h2 class="mb-1 text-lg font-semibold text-gray-800 dark:text-neutral-200">Assign Roles</h2>
+                            <h2 class="mb-1 text-lg font-semibold text-gray-800 dark:text-neutral-200">Assign Role</h2>
                             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2">
                                 @foreach(\Spatie\Permission\Models\Role::all() as $role)
                                     <label for="role-{{ $role->id }}" class="flex items-center p-3 w-full border rounded-lg text-sm dark:border-neutral-700">
-                                        <input type="checkbox" id="role-{{ $role->id }}" wire:model="selectedRoles" value="{{ $role->name }}"
+                                        <input type="radio" id="role-{{ $role->id }}" wire:model="selectedRole" value="{{ $role->name }}"
                                             class="shrink-0 size-4 border-gray-300 rounded-sm text-blue-600 focus:ring-blue-500">
                                         <span class="ms-3 text-sm text-gray-700 dark:text-neutral-200">{{ $role->name }}</span>
                                     </label>
                                 @endforeach
                             </div>
-                            @error('selectedRoles') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            @error('selectedRole') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
 

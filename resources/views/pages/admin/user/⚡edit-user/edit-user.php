@@ -9,14 +9,16 @@ new #[Layout('layouts::navbar')] class extends Component
     public $user;
     public $name;
     public $email;
-    public $selectedRoles = [];
+    public $selectedRole;
+    public $password;
+    public $password_confirmation;
 
     public function mount(User $user)
     {
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->selectedRoles = $user->roles->pluck('name')->toArray();
+        $this->selectedRole = $user->roles->pluck('name')->first(); // single role
     }
 
     protected function rules()
@@ -24,7 +26,8 @@ new #[Layout('layouts::navbar')] class extends Component
         return [
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email,' . $this->user->id,
-            'selectedRoles' => 'array',
+            'password' => 'nullable|string|min:6|confirmed',
+            'selectedRole' => 'required|string',
         ];
     }
 
@@ -35,9 +38,11 @@ new #[Layout('layouts::navbar')] class extends Component
         $this->user->update([
             'name' => $this->name,
             'email' => $this->email,
+            'password' => $this->password ? bcrypt($this->password) : $this->user->password,
         ]);
 
-        $this->user->syncRoles($this->selectedRoles);
+        // Sync with a single role
+        $this->user->syncRoles([$this->selectedRole]);
 
         session()->flash('success', 'User updated successfully!');
     }
